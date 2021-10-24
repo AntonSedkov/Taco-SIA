@@ -36,20 +36,6 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(),
                     filteringByType(ingredients, type));
         }
-
-             /*   Arrays.asList(
-                new Ingredient("FLTO", "Flour tortilla", Ingredient.Type.WRAP),
-                new Ingredient("COTO", "Corn tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GRBF", "Ground beef", Ingredient.Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
-                new Ingredient("TMTO", "Diced tomatoes", Ingredient.Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
-                new Ingredient("SRCR", "Sour cream", Ingredient.Type.SAUCE)
-        );*/
-
     }
 
     @GetMapping
@@ -63,7 +49,6 @@ public class DesignTacoController {
         if (errors.hasErrors()) {
             return "design";
         }
-
         log.info("Processing taco: " + taco);
         return "redirect:/orders/current";
     }

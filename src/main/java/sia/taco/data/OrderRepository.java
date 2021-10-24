@@ -2,11 +2,13 @@ package sia.taco.data;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import sia.taco.model.TacoOrder;
 
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 
     List<TacoOrder> findByDeliveryZip(String deliveryZip);

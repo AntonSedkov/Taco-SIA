@@ -1,10 +1,10 @@
-#spring:
-# datasource:
-#  generate-unique-name: false
-#  name: tacocloud
-#  url: jdbc:h2:mem:tacocloud
-#  username: user
-#  password: pass
+spring:
+ datasource:
+  generate-unique-name: false
+  name: tacocloud
+  url: jdbc:h2:mem:tacocloud
+  username: user
+  password: pass
 
 #spring:
 # data:
@@ -19,12 +19,12 @@
 #    - casshost-1.tacocloud.com
 #    - casshost-2.tacocloud.com
 
-spring:
- data:
-  mongodb:
-   database: test
-   host: localhost
-   port: 27017
+#spring:
+# data:
+#  mongodb:
+#   database: test
+#   host: localhost
+#   port: 27017
 #   database: tacoclouddb
 #   host: mongodb.tacocloud.com
 #   port: 27018
