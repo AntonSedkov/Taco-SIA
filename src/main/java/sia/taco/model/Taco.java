@@ -1,40 +1,41 @@
 package sia.taco.model;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.Data;
+import org.springframework.data.cassandra.core.cql.Ordering;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import org.springframework.data.cassandra.core.mapping.Table;
+import sia.taco.util.TacoUDTUtils;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
-@Entity(name = "Taco")
+@Table("tacos")
 public class Taco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
+    private UUID id = Uuids.timeBased();
 
-    @Column(name = "created_at")
-    private Date createdAt;
+    @PrimaryKeyColumn(type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
+    private Date createAt = new Date();
 
-    @Column
     @NotNull
     @Size(min = 5, message = "Name must be at least 5 characters long")
     private String name;
 
+    @Column("ingredients")
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    @ManyToMany
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<IngredientUDT> ingredients = new ArrayList<>();
 
     public void addIngredient(Ingredient ingredient) {
-        this.ingredients.add(ingredient);
+        this.ingredients.add(TacoUDTUtils.toIngredientUDT(ingredient));
     }
 
-    @PrePersist
-    private void createAt(){
-        createdAt = new Date();
-    }
 }
