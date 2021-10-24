@@ -9,7 +9,7 @@ import sia.taco.model.Ingredient;
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private IngredientRepository repository;
+    private final IngredientRepository repository;
 
     @Autowired
     public IngredientByIdConverter(IngredientRepository repository) {

@@ -1,32 +1,7 @@
-#spring:
-# datasource:
-#  generate-unique-name: false
-#  name: tacocloud
-#  url: jdbc:h2:mem:tacocloud
-#  username: user
-#  password: pass
-
-#spring:
-# data:
-#  cassandra:
-#   keyspace-name: tacocloud
-#   schema-action: recreate-drop-unused
-#   local-datacenter: datacenter1
-#   username: user
-#   password: pass
-#   port: 9042
-#   contact-points:
-#    - casshost-1.tacocloud.com
-#    - casshost-2.tacocloud.com
-
 spring:
- data:
-  mongodb:
-   database: test
-   host: localhost
-   port: 27017
-#   database: tacoclouddb
-#   host: mongodb.tacocloud.com
-#   port: 27018
-#   username: user
-#   password: pass
+ datasource:
+  generate-unique-name: false
+  name: tacocloud
+  url: jdbc:h2:mem:tacocloud
+  username: user
+  password: pass

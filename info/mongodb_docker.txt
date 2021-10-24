@@ -1,2 +1,0 @@
-docker run --name my-mongodb -p27017:27017 -d mongo:latest
-
