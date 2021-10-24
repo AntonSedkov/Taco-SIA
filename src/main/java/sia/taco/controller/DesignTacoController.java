@@ -49,7 +49,6 @@ public class DesignTacoController {
         if (errors.hasErrors()) {
             return "design";
         }
-
         log.info("Processing taco: " + taco);
         return "redirect:/orders/current";
     }
