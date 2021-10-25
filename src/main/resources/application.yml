@@ -1,3 +1,12 @@
+server:
+  port: 80
+#  port: 8443
+#  ssl:
+#    keytool -keystore mykeys.jks -genkey -alias tomcat -keyalg RSA
+#    key-store: file:///path/to/mykeys.jks OR classpath:///path/to/mykeys.jks
+#    key-store-password: letmein
+#    key-password: letmein
+
 spring:
   datasource:
     generate-unique-name: false
@@ -5,6 +14,7 @@ spring:
     url: jdbc:h2:mem:tacocloud
     username: user
     password: pass
+    driver-class-name: org.h2.Driver
 
   jpa:
     show-sql: true
@@ -20,3 +30,16 @@ spring:
             clientId: github-client-id
             clientSecret: github-client-secret
             scope: email, public_profile
+
+
+logging:
+  file:
+    path: /var/logs/
+    name: taco.log
+  level:
+    root: WARN
+    org.springframework.security: DEBUG
+
+taco:
+  orders:
+    pageSize: 10
