@@ -42,14 +42,10 @@ public class OrderController {
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors,
                                SessionStatus sessionStatus,
-            /*Principal principal*/
                                @AuthenticationPrincipal User user) {
         if (errors.hasErrors()) {
             return "order_form";
         }
-
-/*        User user = userRepository.findByUsername(principal.getName());
-        order.setUser(user);*/
 
         order.setUser(user);
         orderRepository.save(order);

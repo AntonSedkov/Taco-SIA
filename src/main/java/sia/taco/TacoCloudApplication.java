@@ -10,7 +10,6 @@ import sia.taco.model.Ingredient;
 import sia.taco.model.Ingredient.Type;
 
 @SpringBootApplication
-@EnableGlobalMethodSecurity
 public class TacoCloudApplication {
 
     public static void main(String[] args) {
