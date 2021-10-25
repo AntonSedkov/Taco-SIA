@@ -4,11 +4,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import sia.taco.data.IngredientRepository;
 import sia.taco.model.Ingredient;
 import sia.taco.model.Ingredient.Type;
 
 @SpringBootApplication
+@EnableGlobalMethodSecurity
 public class TacoCloudApplication {
 
     public static void main(String[] args) {

@@ -47,9 +47,8 @@ public class SecurityConfig {
                 .headers().frameOptions().sameOrigin()
 
                 .and()
-                .oauth2Login()
+                .formLogin()
                 .loginPage("/login")
-
                 .defaultSuccessUrl("/design")
 
                 .and()
