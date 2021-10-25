@@ -37,16 +37,25 @@ public class SecurityConfig {
                 .antMatchers("/design", "/orders").access("hasRole('USER')")
                 .antMatchers("/", "/**").access("permitAll()")
 
+                // we need config just for console, nothing else
+                .antMatchers("/h2_console/**").permitAll()
+                // this will ignore only h2-console csrf, spring security 4+
+                .and()
+                .csrf().ignoringAntMatchers("/h2-console/**")
+                //this will allow frames with same origin which is much more safe
+                .and()
+                .headers().frameOptions().sameOrigin()
+
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/authenticate")
-                .usernameParameter("user")
-                .passwordParameter("pass")
+
                 .defaultSuccessUrl("/design")
 
                 .and()
                 .build();
+
+
     }
 
 }
