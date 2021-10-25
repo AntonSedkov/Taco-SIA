@@ -1,18 +1,12 @@
 server:
   port: 80
-#  port: 8443
-#  ssl:
-#    keytool -keystore mykeys.jks -genkey -alias tomcat -keyalg RSA
-#    key-store: file:///path/to/mykeys.jks OR classpath:///path/to/mykeys.jks
-#    key-store-password: letmein
-#    key-password: letmein
 
 spring:
+
   profiles:
     active:
-    - dev
-    - audit
-    - message
+      - group_dev
+
   datasource:
     generate-unique-name: false
     name: tacocloud
@@ -36,19 +30,24 @@ spring:
             clientSecret: github-client-secret
             scope: email, public_profile
 
-
 logging:
   file:
-    path: /var/logs/
+    path: /info/logs/
     name: taco.log
   level:
-    root: WARN
+    root: INFO
     org.springframework.security: DEBUG
 
 taco:
   orders:
     pageSize: 10
 
+---
+spring:
+  profiles:
+    group:
+      - group_dev: dev, audit, message
+      - group_prod: proddb, prodmq, prodmetrics
 
 ---
 spring:
@@ -62,4 +61,3 @@ spring:
   logging:
     level:
       tacos: WARN
-# spring.profiles.group.prod=proddb,prodmq,prodmetrics

@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 public class DataConfig {
 
     @Bean
-    @Profile({"dev", "qa"})
+    @Profile({"dev", "qa", "group_dev"})
     public ApplicationRunner dataLoader(IngredientRepository repo) {
         return args -> {
             repo.save(new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP));
