@@ -3,6 +3,7 @@ package sia.taco.config;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import sia.taco.data.IngredientRepository;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 public class DataConfig {
 
     @Bean
+    @Profile({"dev", "qa"})
     public ApplicationRunner dataLoader(IngredientRepository repo) {
         return args -> {
             repo.save(new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP));
@@ -34,7 +36,7 @@ public class DataConfig {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("schema.sql")
- //               .addScripts("ingredient_data.sql", "ingredient_data.sql")
+                //               .addScripts("ingredient_data.sql", "ingredient_data.sql")
                 .build();
     }
 

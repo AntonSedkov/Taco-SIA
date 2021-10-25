@@ -8,6 +8,11 @@ server:
 #    key-password: letmein
 
 spring:
+  profiles:
+    active:
+    - dev
+    - audit
+    - message
   datasource:
     generate-unique-name: false
     name: tacocloud
@@ -43,3 +48,18 @@ logging:
 taco:
   orders:
     pageSize: 10
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://localhost/tacocloud
+    username: tacouser
+    password: tacopassword
+  logging:
+    level:
+      tacos: WARN
+# spring.profiles.group.prod=proddb,prodmq,prodmetrics

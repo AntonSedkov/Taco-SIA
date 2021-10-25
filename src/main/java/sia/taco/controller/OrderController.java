@@ -18,6 +18,7 @@ import sia.taco.data.OrderRepository;
 import sia.taco.data.UserRepository;
 import sia.taco.model.TacoOrder;
 import sia.taco.model.User;
+import sia.taco.util.OrderProps;
 
 import javax.validation.Valid;
 
@@ -25,23 +26,19 @@ import javax.validation.Valid;
 @Slf4j
 @RequestMapping("/orders")
 @SessionAttributes("order")
-@ConfigurationProperties(prefix = "taco.orders")
 public class OrderController {
 
-    private int pageSize = 20;
-
+    private OrderProps orderProps;
     private UserRepository userRepository;
     private OrderRepository orderRepository;
 
     @Autowired
     public OrderController(UserRepository userRepository,
-                           OrderRepository orderRepository) {
+                           OrderRepository orderRepository,
+                           OrderProps orderProps) {
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+        this.orderProps = orderProps;
     }
 
     @GetMapping("/current")
@@ -53,7 +50,7 @@ public class OrderController {
     @GetMapping
     public String ordersForUser(
             @AuthenticationPrincipal User user, Model model) {
-        Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, orderProps.getPageSize());
         model.addAttribute("orders",
                 orderRepository.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
