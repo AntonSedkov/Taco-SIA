@@ -29,6 +29,9 @@ spring:
             clientId: github-client-id
             clientSecret: github-client-secret
             scope: email, public_profile
+  data:
+    rest:
+      base-path: /api
 
 logging:
   file:
