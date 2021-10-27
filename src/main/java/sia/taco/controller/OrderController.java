@@ -2,7 +2,6 @@ package sia.taco.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.taco.data.OrderRepository;
-import sia.taco.data.UserRepository;
 import sia.taco.model.TacoOrder;
 import sia.taco.model.User;
 import sia.taco.util.OrderProps;
@@ -29,14 +27,11 @@ import javax.validation.Valid;
 public class OrderController {
 
     private OrderProps orderProps;
-    private UserRepository userRepository;
     private OrderRepository orderRepository;
 
     @Autowired
-    public OrderController(UserRepository userRepository,
-                           OrderRepository orderRepository,
+    public OrderController(OrderRepository orderRepository,
                            OrderProps orderProps) {
-        this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.orderProps = orderProps;
     }

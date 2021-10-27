@@ -32,7 +32,7 @@ public class DesignTacoRController {
     public CollectionModel<TacoEntityModel> recentTacos() {
         PageRequest page = PageRequest.of(
                 0, 12, Sort.by("createAt").descending());
-        List<Taco> tacos = tacoRepository.findAll(page);
+        List<Taco> tacos = tacoRepository.findAll(page).getContent();
         List<TacoEntityModel> tacoResources =
                 new TacoEntityModelAssembler().toModels(tacos);
         CollectionModel<TacoEntityModel> recentResources =
