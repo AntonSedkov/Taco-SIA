@@ -14,11 +14,11 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class Getter {
+public class RestClientService {
     private RestTemplate restTemplate;
 
     @Autowired
-    public Getter(RestTemplate restTemplate) {
+    public RestClientService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
